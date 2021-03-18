@@ -180,9 +180,20 @@ Use the getAverageWordLength function below to do the following:
     For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-    /*code here*/
+function getAverageWordLength(array){
+    let numOfWords = 0;
+    for(let i = 0; i < array.length; i++) {
+        let string = array[i];
+        while(string.includes(" ")) {
+            numOfWords++;
+            let space = string.indexOf(" ");
+            string = string.slice(space+1);
+        }
+        numOfWords++; //there is at least one word;
+    }
+    return numOfWords/array.length;
 }
+console.log('stretch 1', getAverageWordLength(originalFlavors));
 
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
@@ -196,9 +207,6 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(/*code here*/){
-    /*code here*/
-}
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 const newFlavors = [
@@ -281,7 +289,17 @@ const regionalFlavors = [
     "Caramel 'n' Cookies"
 ]
 
+function getRandomFlavors(arr, arr1, arr2, arr3){
+    let masterFlavorList = arr.concat(arr1, arr2, arr3);
+    let randomFlavors = [];
+    for(let i = 0; i < 31; i++) {
+        let random = Math.floor(Math.random() * masterFlavorList.length);
+        randomFlavors.push(masterFlavorList[random]);
+    } 
+    return randomFlavors;
+}
 
+console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors));
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
 function foo(){
